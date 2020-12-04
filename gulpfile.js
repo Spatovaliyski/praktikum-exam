@@ -62,7 +62,7 @@ gulp.task("watch", function() {
 	gulp.watch(paths.source.sass + "**/*.scss", gulp.series("sass"));
 	gulp.watch(paths.source.scripts + "**/*.js", gulp.series("minifyScripts"));
 
-	gulp.watch(paths.destination.css + "master.css", gulp.series("cssmin"));
+	gulp.watch(paths.destination.css + "bootstrap.css", gulp.series("cssmin"));
 });
 
 gulp.task("minifyScripts", function() {
