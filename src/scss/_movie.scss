@@ -24,11 +24,10 @@ body {
     flex-flow: row wrap;
     width: 100%;
     justify-content: center;
-    align-items: center;
-
 
     &-sidebar {
         flex-basis: 300px;
+        padding-right: 2em;
     }
 
     &-content {
@@ -42,6 +41,13 @@ body {
     flex-flow: row wrap;
     justify-content: space-between;
     padding: 0;
+
+    &:before {
+        content: '';
+        flex-basis: calc(100% / 3 - 1em);
+        order: 99;
+        display: inline-block;
+    }
 }
 
 .movie {
@@ -50,7 +56,9 @@ body {
         list-style: none;
 
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
         margin-bottom: 2em;
         background-color: #FFF;
         padding: 1em;
@@ -79,15 +87,13 @@ body {
         background: #FFF;
         border-radius: 4px;
         padding: .25em .25em .25em .75em;
-        //height: 2.5em;
-        //width: 2.5em;
 
         font-weight: 700;
 
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 3px -3px #000
+        box-shadow: 0 3px 3px -3px #000;
 
         span {
             font-size: 18px;
@@ -98,8 +104,31 @@ body {
     &-recommendation {
         width: 1em;
         margin-right: .5em;
-        // position: absolute;
-        // top: 2.25em;
-        // right: 4.5em;
     }
+
+    &-title {
+        font-size: 1.5em;
+        color: #111;
+    }
+    
+    &-release-date {
+        color: #999;
+    }
+
+    &-description {
+        color: #333;
+        line-height: 1.65;
+    }
+}
+
+
+// Sidebar filter
+.movies-filter {
+    position: sticky;
+    top: 2em;
+
+    background: #FFF;
+    border-radius: 4px;
+    padding: 1.5em;
+    box-shadow: 0 4px 3px -6px #000;
 }
