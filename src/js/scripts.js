@@ -9,15 +9,14 @@ jQuery('document').ready(function($) {
 
 	// Define pre-selected filters
 	let year = "2020";
-	let genre = "Action";
+	let genre = ""; // No genre selected, display all
 
 	$('#year').change(function(){
 		year = $(this).children("option:selected").val();
-		console.log(year);
-
 		doRequest(year, genre);
 	});
 
+	// Movie scoring system; Allow user to view movies with score 7 and above or all 
 	$('#scoring').change(function(){
 		let movies = $('.movie-item');
 
@@ -34,6 +33,7 @@ jQuery('document').ready(function($) {
 		}
 	});
 
+	// Genres checkbox filtering, push entries to an array and return data based on new filter 
 	$('#genres').change(function(){
 		let genresList = []; 
 		//let selectedGenreName = selectedGenre.val();
@@ -47,16 +47,15 @@ jQuery('document').ready(function($) {
 		});
 
 		genre = genresList;
-		console.log(genre)
-
 		doRequest(year, genre);
 	});
 
-	function doRequest(year, genre) {
+	// Ajax request to the movie database; Hide all previous entries with .remove() and render new ones when thsi function is called
+	function doRequest(selectedYear, selectedGenre) {
 		$('.movie-item').remove();
-
+		
 		$.ajax({
-			url: endpoint + "?api_key=" + apiKey +"&year=" + year + "&with_genres=" + genre,
+			url: endpoint + "?api_key=" + apiKey +"&year=" + selectedYear + "&with_genres=" + selectedGenre,
 			contentType: "application/json",
 			dataType: 'json',
 			success: function(result){
@@ -69,7 +68,7 @@ jQuery('document').ready(function($) {
 					if (voteRating <= 7) {
 						recommendation = "dist/images/thumbs-down-solid.svg";
 					
-						// Else show a thumbs up icon
+					// Else show a thumbs up icon
 					} else {	
 						recommendation = "dist/images/thumbs-up-solid.svg";
 					}
@@ -92,6 +91,7 @@ jQuery('document').ready(function($) {
 		});
 	}
 
+	// Only needs to run once, this gets all genres from the API
 	function getGenres() {
 		$.ajax({
 			url: genreEndpoint + "?api_key=" + apiKey,
@@ -110,7 +110,8 @@ jQuery('document').ready(function($) {
 		});
 	}
 
-	// Initial load of the movies list, Pre-selected Year 2020
+	// Initial load of the movies list, Pre-selected Year 2020 - Action
+
+	doRequest(year, genre);
 	getGenres();
-	doRequest();
 });
