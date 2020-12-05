@@ -2,7 +2,7 @@
     "name": "praktikum",
     "version": "1.0.0",
     "description": "This is a genarator for gulpfile and package.json",
-    "author": "steelydylan",
+    "author": "/",
     "url": "/",
     "license": "MIT License",
     "keywords": "gulp",

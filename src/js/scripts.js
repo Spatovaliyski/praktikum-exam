@@ -4,6 +4,7 @@ jQuery('document').ready(function($) {
 	console.log("Scripts loaded!");
 
 	let endpoint = 'https://api.themoviedb.org/3/discover/movie';
+	let genreEndpoint = 'https://api.themoviedb.org/3/genre/movie/list'
 	let apiKey = 'ca3d69ee336e43d8099727f0d7ce3859';
 
 	// Define custom selected URL variables
@@ -17,6 +18,21 @@ jQuery('document').ready(function($) {
 		doRequest(year, "action");
 	});
 
+	$('#scoring').change(function(){
+		let movies = $('.movie-item');
+
+		if ($('#score-yes').is(':checked')) {
+			$(movies).each(function(i){
+				if($(this).find('.movie-rating > span').text() < 7) {
+					$(this).addClass('is-hidden');
+				}
+			});
+		} else {
+			$(movies).each(function(i, movie){
+				$(movie).removeClass('is-hidden');
+			});
+		}
+	});
 
 	function doRequest(year, genre) {
 		$('.movie-item').remove();
@@ -59,4 +75,28 @@ jQuery('document').ready(function($) {
 			}
 		});
 	}
+
+	function getGenres() {
+		$.ajax({
+			url: genreEndpoint + "?api_key=" + apiKey,
+			contentType: "application/json",
+			dataType: 'json',
+			success: function(result){
+				console.log(result);
+	
+				jQuery.each(result.genres, function(index, item) {
+					$('#genres').append(`
+						<div class="genre-row">
+							<input type="checkbox" id="${item.name}" name="${item.name}" value="Action">
+							<label for="${item.name}">${item.name}</label>
+						</div>
+					`);
+				});
+			}
+		});
+	}
+
+	// Initial load of the movies list, Pre-selected Year 2020
+	getGenres();
+	doRequest();
 });
