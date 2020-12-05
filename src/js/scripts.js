@@ -7,15 +7,15 @@ jQuery('document').ready(function($) {
 	let genreEndpoint = 'https://api.themoviedb.org/3/genre/movie/list'
 	let apiKey = 'ca3d69ee336e43d8099727f0d7ce3859';
 
-	// Define custom selected URL variables
+	// Define pre-selected filters
 	let year = "2020";
-	let genre = "action";
+	let genre = "Action";
 
 	$('#year').change(function(){
 		year = $(this).children("option:selected").val();
 		console.log(year);
 
-		doRequest(year, "action");
+		doRequest(year, genre);
 	});
 
 	$('#scoring').change(function(){
@@ -34,16 +34,32 @@ jQuery('document').ready(function($) {
 		}
 	});
 
+	$('#genres').change(function(){
+		let genresList = []; 
+		//let selectedGenreName = selectedGenre.val();
+
+		$(this).find(".genre-row").each(function(i){
+			let selectedGenre = $(this).find("input:checked");
+			if ($(selectedGenre).is(':checked')) {
+				let dataId = selectedGenre.data("id");
+				return genresList.push(String(dataId).split(',')[0]);
+			}
+		});
+
+		genre = genresList;
+		console.log(genre)
+
+		doRequest(year, genre);
+	});
+
 	function doRequest(year, genre) {
 		$('.movie-item').remove();
 
 		$.ajax({
-			url: endpoint + "?api_key=" + apiKey +"&year=" + year + "&genre=" + genre,
+			url: endpoint + "?api_key=" + apiKey +"&year=" + year + "&with_genres=" + genre,
 			contentType: "application/json",
 			dataType: 'json',
 			success: function(result){
-				console.log(result);
-	
 				jQuery.each(result.results, function(index, item) {
 	
 					let voteRating = item.vote_average;
@@ -82,12 +98,10 @@ jQuery('document').ready(function($) {
 			contentType: "application/json",
 			dataType: 'json',
 			success: function(result){
-				console.log(result);
-	
 				jQuery.each(result.genres, function(index, item) {
 					$('#genres').append(`
 						<div class="genre-row">
-							<input type="checkbox" id="${item.name}" name="${item.name}" value="Action">
+							<input type="checkbox" id="${item.name}" name="${item.name}" value="${item.name}" data-id="${item.id}">
 							<label for="${item.name}">${item.name}</label>
 						</div>
 					`);
