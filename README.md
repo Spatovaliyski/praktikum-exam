@@ -1,6 +1,7 @@
 ## Documentation
 
-This is the praktikum-2020 Boostrap Exam 
+This is the praktikum-2020 Boostrap + Ajax Exam 
+Live preview: https://spatovaliyski.github.io/praktikum-exam/
 
 ### Running the app locally
 
