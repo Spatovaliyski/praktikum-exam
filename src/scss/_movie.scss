@@ -187,6 +187,10 @@ form > label {
     padding: 1.5em;
     box-shadow: 0 4px 3px -6px #000;
 
+    @media (max-width: 1366px) {
+        position: static;
+    }
+
     &-genres {
         max-height: 16em;
         overflow-y: auto;
