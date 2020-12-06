@@ -86,7 +86,7 @@ jQuery('document').ready(function($) {
 						<li class="movie-item">
 						<div class="movie-rating"><span>${item.vote_average}</span><img class="movie-recommendation" src="${recommendation}" alt=""/></div>
 						<aside class="movie-thumbnail mb-3">
-							<picture><img src="http://image.tmdb.org/t/p/w440_and_h660_face/${item.poster_path}"></picture>
+							<picture><img src="https://image.tmdb.org/t/p/w440_and_h660_face/${item.poster_path}"></picture>
 						</aside>
 						<div class="movie-meta">
 							<h2 class="movie-title">${item.title}</h2>
