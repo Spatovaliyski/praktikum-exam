@@ -28,7 +28,7 @@
                                 <h4 class="mb-4">Search for movies</h4>
                                 <form action="POST">
                                     <label for="year">Year of release:</label>
-                                    <select id="year" name="year" class="mb-3">
+                                    <select id="year" name="year" class="mb-4">
                                         <option value="2020">2020</option>
                                         <option value="2019">2019</option>
                                         <option value="2018">2018</option>
@@ -37,12 +37,12 @@
                                     </select>
 
                                     <label for="genres">Genres:</label>
-                                    <div id="genres" class="movies-filter-genres mb-3">
+                                    <div id="genres" class="movies-filter-genres mb-4">
                                         <!-- Genres will autofill here with some sweet Ajax -->
                                     </div>
 
                                     <label>Hide movies with low score?</label>
-                                    <div id="scoring" class="movies-filter-genres mb-3">
+                                    <div id="scoring" class="movies-filter-genres mb-md-4">
                                         <div class="genre-row">
                                             <input type="radio" id="score-yes" value="Yes" name="hide-score">
                                             <label for="score-yes">Yes hide below 7</label>
@@ -53,12 +53,20 @@
                                             <label for="score-no">No show all</label>
                                         </div>
                                     </div>
+
+                                    <label class="d-none d-md-block">Sort view:</label>
+                                    <div class="d-none d-md-block">
+                                        <a href="#" class="sort-by btn btn-secondary">List view</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
 
                         <div class="movies-content">
-                            <ul class="movies-list"></ul>
+                           
+                            <ul class="movies-list">
+                                <!-- Here we will display all movies with some Ajax -->
+                            </ul>
                         </div>
                     </div>
                 </div>

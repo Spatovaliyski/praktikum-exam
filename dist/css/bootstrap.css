@@ -10082,6 +10082,12 @@ form > label {
     padding-right: 2em; }
   .movies-content {
     flex: 1; }
+  @media (max-width: 960px) {
+    .movies-content, .movies-sidebar {
+      flex: 1 1 100%; }
+    .movies-sidebar {
+      margin-bottom: 2em;
+      padding-right: 0; } }
 
 .movies-list {
   display: flex;
@@ -10093,6 +10099,20 @@ form > label {
     flex-basis: calc(100% / 3 - 1em);
     order: 99;
     display: inline-block; }
+  @media (min-width: 640px) {
+    .movies-list.is-row-aligned .movie-item {
+      flex-basis: 100%;
+      flex-flow: row wrap; }
+    .movies-list.is-row-aligned .movie-thumbnail {
+      max-width: 10em;
+      flex-basis: 10em;
+      padding-right: 1.5em; }
+    .movies-list.is-row-aligned .movie-meta {
+      flex: 1;
+      padding-right: 8em; }
+    .movies-list.is-row-aligned .movie-rating {
+      background-color: #f7f7f7;
+      box-shadow: 0 2px 3px -3px #000; } }
 
 .movie-item {
   flex-basis: calc(100% / 3 - 1em);
@@ -10110,6 +10130,9 @@ form > label {
   transition: .2s ease; }
   .movie-item.is-hidden {
     display: none; }
+  @media (max-width: 960px) {
+    .movie-item {
+      flex: 1 1 100%; } }
 
 .movie-thumbnail {
   width: 100%; }

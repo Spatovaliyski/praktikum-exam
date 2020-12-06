@@ -50,6 +50,15 @@ jQuery('document').ready(function($) {
 		doRequest(year, genre);
 	});
 
+	// Alignemnt class toggle
+	$(".sort-by").click(function(){
+		$('.movies-list').toggleClass('is-row-aligned');
+		
+		$(this).text(function(i, text){
+			return text === "List view" ? "Box view" : "List view";
+		})
+	});
+
 	// Ajax request to the movie database; Hide all previous entries with .remove() and render new ones when thsi function is called
 	function doRequest(selectedYear, selectedGenre) {
 		$('.movie-item').remove();

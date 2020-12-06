@@ -2,6 +2,10 @@ $max-width: 1280px;
 $font-size: 16px;
 $body-color: #f1f1f1;
 
+$breakpoint-small: 640px;
+$breakpoint-medium: 960px;
+$breakpoint-large: 1200px;
+
 body {
     background-color: $body-color;
 }
@@ -37,6 +41,18 @@ form > label {
     &-content {
         flex: 1;
     }
+
+    @media (max-width: $breakpoint-medium) {
+        &-content,
+        &-sidebar {
+            flex: 1 1 100%;
+        }
+
+        &-sidebar {
+            margin-bottom: 2em;
+            padding-right: 0;
+        }
+    }
 }
 
 
@@ -51,6 +67,32 @@ form > label {
         flex-basis: calc(100% / 3 - 1em);
         order: 99;
         display: inline-block;
+    }
+
+    // When the movies are aligned in a row, apply custom new styling to match that aligment
+    @media (min-width: $breakpoint-small) {
+        &.is-row-aligned {
+            .movie-item {
+                flex-basis: 100%;
+                flex-flow: row wrap;
+            }
+    
+            .movie-thumbnail {
+                max-width: 10em;
+                flex-basis: 10em;
+                padding-right: 1.5em;
+            }
+    
+            .movie-meta {
+                flex: 1;
+                padding-right: 8em;
+            }
+    
+            .movie-rating {
+                background-color: #f7f7f7;
+                box-shadow: 0 2px 3px -3px #000;
+            }
+        }
     }
 }
 
@@ -74,6 +116,10 @@ form > label {
 
         &.is-hidden {
             display: none;
+        }
+
+        @media (max-width: $breakpoint-medium) {
+            flex: 1 1 100%;
         }
     }
 
